@@ -121,6 +121,11 @@ export default function Home() {
           text-align: center;
         }
 
+        hr {
+          color: #a9a9a9;
+          opacity: 0.3;
+        }
+
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
