@@ -35,56 +35,54 @@ export default function Home() {
         {/* first and last name, email address, date of birth and phone number.  */}
 
         <div className="registration-form">
-          <div className="registration-form">
-            <h1>Registration</h1>
-            <form action="/">
-              <hr />
+          <h1>Registration</h1>
+          <form action="/">
+            <hr />
 
-              <hr />
-              <label id="icon" for="name">
-                <i class="fas fa-envelope"></i>
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Email"
-                required
-              />
-              <label id="icon" for="name">
-                <i class="fas fa-user"></i>
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                required
-              />
-              <label id="icon" for="name">
-                <i class="fas fa-unlock-alt"></i>
-              </label>
-              <input
-                type="password"
-                name="name"
-                id="name"
-                placeholder="Password"
-                required
-              />
-              <hr />
+            <hr />
+            <label id="icon" for="name">
+              <i className="fas fa-envelope"></i>
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Email"
+              required
+            />
+            <label id="icon" for="name">
+              <i className="fas fa-user"></i>
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              required
+            />
+            <label id="icon" for="name">
+              <i className="fas fa-unlock-alt"></i>
+            </label>
+            <input
+              type="password"
+              name="name"
+              id="name"
+              placeholder="Password"
+              required
+            />
+            <hr />
 
-              <hr />
-              <div class="btn-block">
-                <p>
-                  By clicking Register, you agree on our &nbsp;
-                  <a href="/nwo">Privacy Policy for A United Planet</a>.
-                </p>
-                <button type="submit" href="/">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+            <hr />
+            <div className="btn-block">
+              <p>
+                By clicking Register, you agree on our &nbsp;
+                <a href="/nwo">Privacy Policy for A United Planet</a>.
+              </p>
+              <button type="submit" href="/">
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
       </main>
 
@@ -153,6 +151,59 @@ export default function Home() {
           border: solid 1px #ccc;
           box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
           background: #ebebeb;
+        }
+
+        form {
+          margin: 0 30px;
+        }
+
+        label#icon {
+          margin: 0;
+          border-radius: 5px 0 0 5px;
+        }
+
+        input[type="text"],
+        input {
+          width: calc(100% - 57px);
+          height: 36px;
+          margin: 13px 0 0 -5px;
+          padding-left: 10px;
+          border-radius: 0 5px 5px 0;
+          border: solid 1px #cbc9c9;
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
+          background: #fff;
+        }
+
+        input {
+          margin-bottom: 15px;
+        }
+        #icon {
+          display: inline-block;
+          padding: 9.3px 15px;
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
+          background: #1c87c9;
+          color: #fff;
+          text-align: center;
+        }
+
+        .btn-block {
+          margin-top: 10px;
+          text-align: center;
+        }
+
+        button {
+          width: 100%;
+          padding: 10px 0;
+          margin: 10px auto;
+          border-radius: 5px;
+          border: none;
+          background: #1c87c9;
+          font-size: 14px;
+          font-weight: 600;
+          color: #fff;
+        }
+        button:hover {
+          background: #26a9e0;
         }
 
         footer {
