@@ -34,40 +34,56 @@ export default function Home() {
 
         {/* first and last name, email address, date of birth and phone number.  */}
 
-        <div className="grid">
-          <div className="card">
-            <h4 className="inline">First Name &rarr;</h4>
-            <input className="form-input" placeholder="Boris"></input>
-            {/* <p>Find in-depth information about Next.js features and API.</p> */}
-          </div>
+        <div className="registration-form">
+          <div className="registration-form">
+            <h1>Registration</h1>
+            <form action="/">
+              <hr />
 
-          <div className="card">
-            <h4 className="inline">Last Name &rarr;</h4>
-            <input className="form-input" placeholder="Mugwump"></input>
-          </div>
+              <hr />
+              <label id="icon" for="name">
+                <i class="fas fa-envelope"></i>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Email"
+                required
+              />
+              <label id="icon" for="name">
+                <i class="fas fa-user"></i>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                required
+              />
+              <label id="icon" for="name">
+                <i class="fas fa-unlock-alt"></i>
+              </label>
+              <input
+                type="password"
+                name="name"
+                id="name"
+                placeholder="Password"
+                required
+              />
+              <hr />
 
-          <div className="card">
-            <h4 className="inline">Date of Birth &rarr;</h4>
-            <input
-              className="form-input"
-              placeholder="moderndaytyrant@fake.gov.uk"
-            ></input>
-          </div>
-
-          <div className="card">
-            <h4 className="inline">Phone &rarr;</h4>
-            <input className="form-input" placeholder="Boris"></input>
-          </div>
-
-          <div className="card">
-            <h4 className="inline">Consent &rarr;</h4>
-            <input className="form-input" type="checkbox"></input>
-            <p className="consent">
-              I *firstname* *lastname* consent to the storing of my details for
-              reasons of national security. I hereby release all consequences of
-              giving this consent, and hope that future governments are
-              basically nice people
-            </p>
+              <hr />
+              <div class="btn-block">
+                <p>
+                  By clicking Register, you agree on our &nbsp;
+                  <a href="/nwo">Privacy Policy for A United Planet</a>.
+                </p>
+                <button type="submit" href="/">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </main>
@@ -100,6 +116,17 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+        }
+
+        .registration-form {
+          max-width: 340px;
+          min-height: 460px;
+          padding: 10px 0;
+          margin: auto;
+          border-radius: 5px;
+          border: solid 1px #ccc;
+          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+          background: #ebebeb;
         }
 
         footer {
