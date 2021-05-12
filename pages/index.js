@@ -100,6 +100,20 @@ export default function Home() {
       </footer>
 
       <style jsx>{`
+        body,
+        div,
+        h1,
+        form,
+        input,
+        p {
+          padding: 0;
+          margin: 0;
+          outline: none;
+          font-family: Roboto, Arial, sans-serif;
+          font-size: 16px;
+          color: #666;
+        }
+
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
