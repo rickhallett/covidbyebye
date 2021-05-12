@@ -4,71 +4,47 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Covid Bye Bye</title>
+        <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-          crossorigin="anonymous"
-        />
       </Head>
 
       <main>
         <h1 className="title">
-          Get <a href="https://nextjs.org">Tested!</a>
+          Learns <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className="description">
-          No one wants to be a <span>covidiot</span>... go to
-          <code>wisdom/my-tests</code>
+          Get started by editing <code>pages/index.js</code>
         </p>
-
-        <p className="description sub-description">
-          Or fill in the form below:
-        </p>
-
-        {/* first and last name, email address, date of birth and phone number.  */}
 
         <div className="grid">
-          <div className="card">
-            <h4 className="inline">First Name &rarr;</h4>
-            <input className="form-input" placeholder="Boris"></input>
-            {/* <p>Find in-depth information about Next.js features and API.</p> */}
-          </div>
+          <a href="https://nextjs.org/docs" className="card">
+            <h3>Documentation &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </a>
 
-          <div className="card">
-            <h4 className="inline">Last Name &rarr;</h4>
-            <input className="form-input" placeholder="Mugwump"></input>
-          </div>
+          <a href="https://nextjs.org/learn" className="card">
+            <h3>Learn &rarr;</h3>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </a>
 
-          <div className="card">
-            <h4 className="inline">Date of Birth &rarr;</h4>
-            <input
-              className="form-input"
-              placeholder="moderndaytyrant@fake.gov.uk"
-            ></input>
-          </div>
+          <a
+            href="https://github.com/vercel/next.js/tree/master/examples"
+            className="card"
+          >
+            <h3>Examples &rarr;</h3>
+            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          </a>
 
-          <div className="card">
-            <h4 className="inline">Phone &rarr;</h4>
-            <input className="form-input" placeholder="Boris"></input>
-          </div>
-
-          <div className="card">
-            <h4 className="inline">Consent &rarr;</h4>
-            <input className="form-input" type="checkbox"></input>
-            <p className="consent">
-              I *firstname* *lastname* consent to the storing of my details for
-              reasons of national security. I hereby release all consequences of
-              giving this consent, and hope that future governments are
-              basically nice people
+          <a
+            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className="card"
+          >
+            <h3>Deploy &rarr;</h3>
+            <p>
+              Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
-          </div>
+          </a>
         </div>
       </main>
 
@@ -153,22 +129,10 @@ export default function Home() {
           font-size: 1.5rem;
         }
 
-        .description span {
-          font-size: 2rem;
-          letter-spacing: 0.15rem;
-          color: red;
-        }
-
-        .sub-description {
-          color: grey;
-          font-size: 1.3rem;
-        }
-
         code {
           background: #fafafa;
           border-radius: 5px;
           padding: 0.75rem;
-          margin-left: 0.5rem;
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
@@ -180,7 +144,7 @@ export default function Home() {
           justify-content: center;
           flex-wrap: wrap;
 
-          max-width: 900px;
+          max-width: 800px;
           margin-top: 3rem;
         }
 
@@ -216,20 +180,6 @@ export default function Home() {
 
         .logo {
           height: 1em;
-        }
-
-        .inline {
-          display: inline;
-        }
-
-        .form-input {
-          height: 1.5rem;
-          font-size: 1rem;
-        }
-
-        .consent {
-          font-size: 1px;
-          color: red;
         }
 
         @media (max-width: 600px) {
