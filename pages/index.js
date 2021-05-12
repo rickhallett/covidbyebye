@@ -19,18 +19,18 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">
+        {/* <h1 className="title">
           Get <a href="https://nextjs.org">Tested!</a>
-        </h1>
+        </h1> */}
 
-        <p className="description">
+        {/* <p className="description">
           No one wants to be a <span>covidiot</span>... go to
           <code>wisdom/my-tests</code>
         </p>
 
         <p className="description sub-description">
           Or fill in the form below:
-        </p>
+        </p> */}
 
         {/* first and last name, email address, date of birth and phone number.  */}
 
@@ -39,8 +39,29 @@ export default function Home() {
           <form action="/">
             <hr />
 
-            <hr />
-            <label id="icon" for="name">
+            <label id="icon">
+              <i className="fas fa-user"></i>
+            </label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              placeholder="First name"
+              required
+            />
+
+            <label id="icon">
+              <i className="fas fa-user"></i>
+            </label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              placeholder="Last name"
+              required
+            />
+
+            <label id="icon">
               <i className="fas fa-envelope"></i>
             </label>
             <input
@@ -50,29 +71,20 @@ export default function Home() {
               placeholder="Email"
               required
             />
-            <label id="icon" for="name">
+
+            <label id="icon">
               <i className="fas fa-user"></i>
             </label>
             <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Name"
+              type="date"
+              name="lastname"
+              id="lastname"
+              placeholder="Last name"
               required
             />
-            <label id="icon" for="name">
-              <i className="fas fa-unlock-alt"></i>
-            </label>
-            <input
-              type="password"
-              name="name"
-              id="name"
-              placeholder="Password"
-              required
-            />
-            <hr />
 
             <hr />
+
             <div className="btn-block">
               <p className="disclaimer">
                 By clicking Register, you agree on our &nbsp;
@@ -165,7 +177,7 @@ export default function Home() {
         input[type="text"],
         input {
           width: calc(100% - 57px);
-          height: 36px;
+          height: 40px;
           margin: 13px 0 0 -5px;
           padding-left: 10px;
           border-radius: 0 5px 5px 0;
@@ -179,7 +191,7 @@ export default function Home() {
         }
         #icon {
           display: inline-block;
-          padding: 9.3px 15px;
+          padding: 10px 15px;
           box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
           background: #1c87c9;
           color: #fff;
