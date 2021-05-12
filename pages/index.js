@@ -114,6 +114,13 @@ export default function Home() {
           color: #666;
         }
 
+        h1 {
+          padding: 10px 0;
+          font-size: 32px;
+          font-weight: 300;
+          text-align: center;
+        }
+
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
