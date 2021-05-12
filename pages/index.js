@@ -74,7 +74,7 @@ export default function Home() {
 
             <hr />
             <div className="btn-block">
-              <p>
+              <p className="disclaimer">
                 By clicking Register, you agree on our &nbsp;
                 <a href="/nwo">Privacy Policy for A United Planet</a>.
               </p>
@@ -333,6 +333,18 @@ export default function Home() {
 
         .consent {
           font-size: 1px;
+          color: red;
+        }
+
+        .disclaimer {
+          font-size: 0.7rem;
+        }
+
+        .disclaimer a {
+          color: darkred;
+        }
+
+        .disclaimer a:hover {
           color: red;
         }
 
