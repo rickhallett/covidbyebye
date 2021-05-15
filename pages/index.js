@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Component } from "react";
+import QRcode from "qrcode.react";
 
 export default class Home extends Component {
   constructor(props) {
@@ -132,6 +133,8 @@ export default class Home extends Component {
               </div>
             </div>
           </div>
+
+          <QRcode value={this.state.firstname}></QRcode>
         </main>
 
         <footer>
