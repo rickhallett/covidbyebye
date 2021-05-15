@@ -13,7 +13,7 @@ body {
 body,
 div,
 h1,
-form,
+.form,
 input,
 p {
   padding: 0;
@@ -65,7 +65,7 @@ main {
   background: #ebebeb;
 }
 
-form {
+.form {
   margin: 0 30px;
 }
 

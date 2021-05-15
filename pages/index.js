@@ -14,7 +14,9 @@ export default class Home extends Component {
     };
   }
 
-  getQRCode() {}
+  getQRCode() {
+    console.log("getting qr code with", this.state);
+  }
 
   render() {
     console.log(this.state);
@@ -31,12 +33,13 @@ export default class Home extends Component {
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           />
+          {/* <link rel="stylesheet" href="../assets/css/index.css" /> */}
         </Head>
 
         <main>
           <div className="registration-form">
             <h1>Registration</h1>
-            <form action="/">
+            <div className="form">
               <hr />
 
               <label id="icon">
@@ -125,11 +128,9 @@ export default class Home extends Component {
                   By clicking submit, you agree on our &nbsp;
                   <a href="/nwo">Privacy Policy for A United Planet</a>.
                 </p>
-                <button type="submit" href="/">
-                  Submit
-                </button>
+                <button onClick={() => this.getQRCode()}>Submit</button>
               </div>
-            </form>
+            </div>
           </div>
         </main>
 
