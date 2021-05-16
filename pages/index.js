@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Component } from "react";
 import QRcode from "qrcode.react";
+import fallback from "qrcode";
 import axios from "axios";
 
 // import qrPNG from "/test-static.png";
@@ -20,23 +21,18 @@ export default class Home extends Component {
         dob: "",
         timestamp: null,
       },
-      qrcode: "",
-      qrImage: "/vercel.svg",
     };
   }
 
   getQRCode() {
     const timestamp = Date.now().toString();
     this.state.apiData.timestamp = timestamp;
-    console.log("getting qr code with", this.state.apiData);
     axios
       .post("/api/qr", this.state.apiData)
       .then((res) => {
-        console.log("res", res);
         const newState = { ...this.state };
-        newState.qrImage = res.data.fileName;
-        newState.qrcode = res.data.imageRaw;
         this.setState({ ...newState });
+        this.downloadLastQR(res.data.filename);
       })
       .catch((err) => {
         console.log(err);
@@ -44,8 +40,17 @@ export default class Home extends Component {
   }
 
   getQRCodeString() {
-    const str = this.state.apiData;
-    return `${str.firstname}${str.lastname}${str.email}${str.phonenumber}${str.dob}`;
+    return JSON.stringify(this.state.apiData);
+  }
+
+  downloadLastQR(filename) {
+    console.log("downloading...", filename);
+    const downloadLink = document.createElement("a");
+    downloadLink.href = `/${filename}`;
+    downloadLink.download = filename;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   }
 
   handleInput(evt) {
@@ -154,11 +159,11 @@ export default class Home extends Component {
           </div>
 
           <p>ref:</p>
-          <QRcode value={this.getQRCodeString()}></QRcode>
-
-          <p>server:</p>
-          <WrappedImage path={this.state.qrcode}></WrappedImage>
-          {/* <img src="/test-static.png"></img> */}
+          <QRcode
+            value={this.getQRCodeString()}
+            size={128}
+            level={"H"}
+          ></QRcode>
         </main>
 
         <footer>

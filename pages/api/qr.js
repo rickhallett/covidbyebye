@@ -3,9 +3,7 @@ import path from "path";
 import QRcode, { toDataURL } from "qrcode";
 
 const generateQRToFile = async (data) => {
-  // const filename = `qr-${Date.now()}.png`;
-  console.log("req", data);
-  const filename = `./public/${data.timestamp}.png`;
+  const filename = `./public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
   try {
     await QRcode.toFile(filename, JSON.stringify(data));
   } catch (error) {
@@ -22,13 +20,10 @@ export default async function handler(req, res) {
 
   if (fileCreated.error) return res.status(500).json({ msg: fileCreated.msg });
 
-  const filePath = path.resolve(".", `${fileCreated}`);
-  const imageBuffer = fs.readFileSync(filePath);
+  const filename = fileCreated.substring(9);
 
-  res.setHeader("Content-Type", "image/png");
-  res.send({
-    imageRaw: imageBuffer,
-    filePath: fileCreated,
-    fileName: fileCreated.split("/")[2],
+  return res.status(200).json({
+    msg: `${fileCreated} created!`,
+    filename: filename,
   });
 }

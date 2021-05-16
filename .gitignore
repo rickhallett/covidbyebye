@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# generated qr codes
+/public/*.png
+
 # production
 /build
 
