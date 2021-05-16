@@ -22,6 +22,11 @@ p {
   font-family: Roboto, Arial, sans-serif;
   font-size: 16px;
   color: #666;
+  background: #ebebeb;
+}
+
+.form {
+  text-align: center;
 }
 
 h1 {
@@ -59,9 +64,9 @@ main {
   min-height: 460px;
   padding: 10px 0;
   margin: auto;
-  border-radius: 5px;
-  border: solid 1px #ccc;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31);
+  /* border-radius: 5px; */
+  /* border: solid 1px #ccc; */
+  /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31); */
   background: #ebebeb;
 }
 
@@ -245,6 +250,10 @@ code {
   font-size: 1rem;
 }
 
+.qr-code {
+  margin-top: 1rem;
+}
+
 .consent {
   font-size: 1px;
   color: red;
@@ -266,5 +275,13 @@ code {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  body {
+    color: red;
+  }
+
+  .registration-form {
+    margin-bottom: 2rem;
   }
 }

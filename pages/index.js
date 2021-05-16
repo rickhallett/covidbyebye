@@ -1,13 +1,10 @@
 import Head from "next/head";
 import { Component } from "react";
 import QRcode from "qrcode.react";
-import fallback from "qrcode";
 import axios from "axios";
 
-// import qrPNG from "/test-static.png";
-import Image from "next/image";
-import WrappedImage from "../components/WrappedImage";
 import Footer from "../components/Footer";
+// import styles from '../assets/'
 
 export default class Home extends Component {
   constructor(props) {
@@ -78,7 +75,7 @@ export default class Home extends Component {
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           />
-          {/* <link rel="stylesheet" href="assets/css/index.css" /> */}
+          <link rel="stylesheet" href="/css/index.css" />
         </Head>
 
         <main>
@@ -154,18 +151,21 @@ export default class Home extends Component {
                   <a href="/nwo">Privacy Policy for A United Planet</a>.
                 </p>
                 <button onClick={() => this.getQRCode()}>Submit</button>
-                <button onClick={() => this.printState()}>State</button>
+                {/* <button onClick={() => this.printState()}>State</button> */}
               </div>
+
+              <hr />
+
+              <QRcode
+                className="qr-code"
+                value={this.getQRCodeString()}
+                size={128}
+                level={"H"}
+              ></QRcode>
             </div>
           </div>
-
-          <p>ref:</p>
-          <QRcode
-            value={this.getQRCodeString()}
-            size={128}
-            level={"H"}
-          ></QRcode>
         </main>
+
         <Footer />
       </div>
     );

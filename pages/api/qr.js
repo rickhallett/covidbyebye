@@ -1,6 +1,4 @@
-import fs from "fs";
-import path from "path";
-import QRcode, { toDataURL } from "qrcode";
+import QRcode from "qrcode";
 
 const generateQRToFile = async (data) => {
   const filename = `./public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
