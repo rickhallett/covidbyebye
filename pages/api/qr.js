@@ -1,9 +1,10 @@
 import QRcode from "qrcode";
 
 const generateQRToFile = async (text) => {
+  console.log(text);
   const timestamp = Date.now();
   try {
-    await QRcode.toFile(`qr-${timestamp}.jpg`, text);
+    await QRcode.toFile(`qr-${timestamp}.png`, text);
   } catch (error) {
     return false;
   }
