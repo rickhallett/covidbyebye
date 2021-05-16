@@ -22,7 +22,7 @@ p {
   font-family: Roboto, Arial, sans-serif;
   font-size: 16px;
   color: #666;
-  background: #ebebeb;
+  background: #33525e;
 }
 
 .form {
@@ -67,7 +67,7 @@ main {
   /* border-radius: 5px; */
   /* border: solid 1px #ccc; */
   /* box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.31); */
-  background: #ebebeb;
+  background: #33525e;
 }
 
 .form {
@@ -115,10 +115,30 @@ button {
   margin: 10px auto;
   border-radius: 5px;
   border: none;
-  background: #1c87c9;
+  background: #f06163;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
+}
+
+button:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -20px;
+  border-right: 20px solid #f06163;
+  border-top: 23px solid transparent;
+  border-bottom: 23px solid transparent;
+}
+
+button:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: -20px;
+  border-left: 20px solid #f06163;
+  border-top: 23px solid transparent;
+  border-bottom: 23px solid transparent;
 }
 
 button:hover {

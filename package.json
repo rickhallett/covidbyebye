@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
+    "aws-sdk": "^2.907.0",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "next": "^10.0.0",
     "qrcode": "^1.4.4",
     "qrcode.react": "^0.9.3",
