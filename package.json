@@ -15,5 +15,8 @@
     "qrcode.react": "^0.9.3",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

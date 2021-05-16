@@ -1,15 +1,17 @@
+import fs from "fs";
+import path from "path";
 import QRcode from "qrcode";
 
-const generateQRToFile = async (text) => {
-  console.log(text);
-  const timestamp = Date.now();
+const generateQRToFile = async (qrText) => {
+  // const filename = `qr-${Date.now()}.png`;
+  const filename = "./public/test-static.png";
   try {
-    await QRcode.toFile(`qr-${timestamp}.png`, text);
+    await QRcode.toFile(filename, qrText);
   } catch (error) {
     return false;
   }
 
-  return timestamp;
+  return filename;
 };
 
 export default async function handler(req, res) {
@@ -20,5 +22,9 @@ export default async function handler(req, res) {
       .status(500)
       .json({ error: "Server encountered an error. Please call the police." });
 
-  return res.status(200).json({ filename: `qr-${qrSuccess}` });
+  const filePath = path.resolve(".", `${qrSuccess}`);
+  const imageBuffer = fs.readFileSync(filePath);
+
+  res.setHeader("Content-Type", "image/png");
+  res.send(imageBuffer);
 }

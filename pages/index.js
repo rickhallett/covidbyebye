@@ -3,36 +3,48 @@ import { Component } from "react";
 import QRcode from "qrcode.react";
 import axios from "axios";
 
+// import qrPNG from "/test-static.png";
+import Image from "next/image";
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      phonenumber: "",
-      dob: "",
+      apiData: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        phonenumber: "",
+        dob: "",
+      },
+      qrcode: "",
+      qrImage: "/test-static.png",
     };
   }
 
   getQRCode() {
-    console.log("getting qr code with", this.state);
+    console.log("getting qr code with", this.state.apiData);
     axios
-      .post("/api/qr", this.state)
+      .post("/api/qr", this.state.apiData)
       .then((res) => {
         console.log(res);
+        this.setState({ qrcode: res.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  getQRCodeString() {
+    const str = this.state.apiData;
+    return `${str.firstname}${str.lastname}${str.email}${str.phonenumber}${str.dob}`;
+  }
+
   handleInput(evt) {
-    console.log("called handleInput");
-    this.setState({
-      [evt.target.id]: evt.target.value,
-    });
+    const newState = { ...this.state };
+    newState.apiData[evt.target.id] = evt.target.value;
+    this.setState({ newState });
   }
 
   render() {
@@ -129,7 +141,12 @@ export default class Home extends Component {
             </div>
           </div>
 
-          <QRcode value={this.state.firstname}></QRcode>
+          <p>ref:</p>
+          <QRcode value={this.getQRCodeString()}></QRcode>
+
+          <p>server:</p>
+          {/* <img src="/test-static.png"></img> */}
+          <Image src={this.state.qrImage} width={200} height={200}></Image>
         </main>
 
         <footer>
