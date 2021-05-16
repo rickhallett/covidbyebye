@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Component } from "react";
 import QRcode from "qrcode.react";
+import axios from "axios";
 
 export default class Home extends Component {
   constructor(props) {
@@ -17,6 +18,14 @@ export default class Home extends Component {
 
   getQRCode() {
     console.log("getting qr code with", this.state);
+    axios
+      .post("/api/qr", this.state)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleInput(evt) {
@@ -40,7 +49,7 @@ export default class Home extends Component {
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           />
-          {/* <link rel="stylesheet" href="../assets/css/index.css" /> */}
+          {/* <link rel="stylesheet" href="assets/css/index.css" /> */}
         </Head>
 
         <main>
