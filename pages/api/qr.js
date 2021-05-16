@@ -1,7 +1,7 @@
 import QRcode from "qrcode";
 
 const generateQRToFile = async (data) => {
-  const filename = `./public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
+  const filename = `public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
   try {
     await QRcode.toFile(filename, JSON.stringify(data));
   } catch (error) {

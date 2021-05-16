@@ -4,7 +4,6 @@ import QRcode from "qrcode.react";
 import axios from "axios";
 
 import Footer from "../components/Footer";
-// import styles from '../assets/'
 
 export default class Home extends Component {
   constructor(props) {
@@ -148,7 +147,10 @@ export default class Home extends Component {
               <div className="btn-block">
                 <p className="disclaimer">
                   By clicking submit, you agree on our &nbsp;
-                  <a href="/nwo">Privacy Policy for A United Planet</a>.
+                  <a href="https://www.testingforall.org/terms-of-service/">
+                    Terms and Conditions
+                  </a>
+                  .
                 </p>
                 <button onClick={() => this.getQRCode()}>Submit</button>
                 {/* <button onClick={() => this.printState()}>State</button> */}
