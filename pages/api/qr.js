@@ -1,30 +1,34 @@
 import fs from "fs";
 import path from "path";
-import QRcode from "qrcode";
+import QRcode, { toDataURL } from "qrcode";
 
-const generateQRToFile = async (qrText) => {
+const generateQRToFile = async (data) => {
   // const filename = `qr-${Date.now()}.png`;
-  const filename = "./public/test-static.png";
+  console.log("req", data);
+  const filename = `./public/${data.timestamp}.png`;
   try {
-    await QRcode.toFile(filename, qrText);
+    await QRcode.toFile(filename, JSON.stringify(data));
   } catch (error) {
-    return false;
+    console.error(error);
+    return { error: true, msg: error };
   }
 
   return filename;
 };
 
 export default async function handler(req, res) {
-  const qrSuccess = await generateQRToFile(JSON.stringify(req.body));
+  console.log("req", req.body);
+  const fileCreated = await generateQRToFile(req.body);
 
-  if (!qrSuccess)
-    return res
-      .status(500)
-      .json({ error: "Server encountered an error. Please call the police." });
+  if (fileCreated.error) return res.status(500).json({ msg: fileCreated.msg });
 
-  const filePath = path.resolve(".", `${qrSuccess}`);
+  const filePath = path.resolve(".", `${fileCreated}`);
   const imageBuffer = fs.readFileSync(filePath);
 
   res.setHeader("Content-Type", "image/png");
-  res.send(imageBuffer);
+  res.send({
+    imageRaw: imageBuffer,
+    filePath: fileCreated,
+    fileName: fileCreated.split("/")[2],
+  });
 }

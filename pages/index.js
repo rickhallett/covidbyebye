@@ -5,6 +5,7 @@ import axios from "axios";
 
 // import qrPNG from "/test-static.png";
 import Image from "next/image";
+import WrappedImage from "../components/WrappedImage";
 
 export default class Home extends Component {
   constructor(props) {
@@ -17,19 +18,25 @@ export default class Home extends Component {
         email: "",
         phonenumber: "",
         dob: "",
+        timestamp: null,
       },
       qrcode: "",
-      qrImage: "/test-static.png",
+      qrImage: "/vercel.svg",
     };
   }
 
   getQRCode() {
+    const timestamp = Date.now().toString();
+    this.state.apiData.timestamp = timestamp;
     console.log("getting qr code with", this.state.apiData);
     axios
       .post("/api/qr", this.state.apiData)
       .then((res) => {
-        console.log(res);
-        this.setState({ qrcode: res.data });
+        console.log("res", res);
+        const newState = { ...this.state };
+        newState.qrImage = res.data.fileName;
+        newState.qrcode = res.data.imageRaw;
+        this.setState({ ...newState });
       })
       .catch((err) => {
         console.log(err);
@@ -44,7 +51,11 @@ export default class Home extends Component {
   handleInput(evt) {
     const newState = { ...this.state };
     newState.apiData[evt.target.id] = evt.target.value;
-    this.setState({ newState });
+    this.setState({ ...newState });
+  }
+
+  printState() {
+    console.log(this.state);
   }
 
   render() {
@@ -137,6 +148,7 @@ export default class Home extends Component {
                   <a href="/nwo">Privacy Policy for A United Planet</a>.
                 </p>
                 <button onClick={() => this.getQRCode()}>Submit</button>
+                <button onClick={() => this.printState()}>State</button>
               </div>
             </div>
           </div>
@@ -145,8 +157,8 @@ export default class Home extends Component {
           <QRcode value={this.getQRCodeString()}></QRcode>
 
           <p>server:</p>
+          <WrappedImage path={this.state.qrcode}></WrappedImage>
           {/* <img src="/test-static.png"></img> */}
-          <Image src={this.state.qrImage} width={200} height={200}></Image>
         </main>
 
         <footer>
