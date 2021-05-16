@@ -61,6 +61,7 @@ export default class Home extends Component {
       },
       function (err, data) {
         if (err) {
+          alert(err);
           console.log("Error", err);
         } else if (data) {
           console.log("Success", JSON.stringify(data.CORSRules));
