@@ -139,6 +139,7 @@ export default class Home extends Component {
                 name="dob"
                 id="dob"
                 onChange={(e) => this.handleInput(e)}
+                placeholder="dd/mm/yyyy"
                 // required
               />
 
