@@ -19,8 +19,14 @@ export default class Home extends Component {
     console.log("getting qr code with", this.state);
   }
 
+  handleInput(evt) {
+    console.log("called handleInput");
+    this.setState({
+      [evt.target.id]: evt.target.value,
+    });
+  }
+
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <Head>
@@ -51,11 +57,7 @@ export default class Home extends Component {
                 name="firstname"
                 id="firstname"
                 placeholder="First name"
-                onChange={(value) => {
-                  this.setState({
-                    firstname: value.target.value,
-                  });
-                }}
+                onChange={(e) => this.handleInput(e)}
                 // required
               />
 
@@ -67,11 +69,7 @@ export default class Home extends Component {
                 name="lastname"
                 id="lastname"
                 placeholder="Last name"
-                onChange={(value) => {
-                  this.setState({
-                    lastname: value.target.value,
-                  });
-                }}
+                onChange={(e) => this.handleInput(e)}
                 // required
               />
 
@@ -83,11 +81,7 @@ export default class Home extends Component {
                 name="email"
                 id="name"
                 placeholder="Email"
-                onChange={(value) => {
-                  this.setState({
-                    email: value.target.value,
-                  });
-                }}
+                onChange={(e) => this.handleInput(e)}
                 // required
               />
 
@@ -99,11 +93,7 @@ export default class Home extends Component {
                 name="phone"
                 id="phone"
                 placeholder="Mobile"
-                onChange={(value) => {
-                  this.setState({
-                    phonenumber: value.target.value,
-                  });
-                }}
+                onChange={(e) => this.handleInput(e)}
                 // required
               />
 
@@ -114,11 +104,7 @@ export default class Home extends Component {
                 type="date"
                 name="dob"
                 id="dob"
-                onChange={(value) => {
-                  this.setState({
-                    dob: value.target.value,
-                  });
-                }}
+                onChange={(e) => this.handleInput(e)}
                 // required
               />
 
