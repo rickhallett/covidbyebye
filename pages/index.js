@@ -28,7 +28,7 @@ export default class Home extends Component {
     };
   }
 
-  getQRCode() {
+  generateQRFile() {
     this.state.apiData.timestamp = Date.now().toString();
     axios
       .post(backendURL, this.state.apiData)
@@ -81,6 +81,34 @@ export default class Home extends Component {
           <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          />
+          <link
+            rel="stylesheet"
+            id="bootstrap-css"
+            href="https://www.testingforall.org/wp-content/themes/WP-boilerplate/libs/bootstrap-4.4.1-dist/css/bootstrap.min.css?ver=5.7.2"
+            type="text/css"
+            media="all"
+          />
+          <link
+            rel="stylesheet"
+            id="animate-css"
+            href="https://www.testingforall.org/wp-content/themes/WP-boilerplate/libs/animate-css/animate.css?ver=all"
+            type="text/css"
+            media="all"
+          />
+          <link
+            rel="stylesheet"
+            id="font-style-css"
+            href="https://fonts.googleapis.com/css2?family=Raleway%3Awght%40300%3B400%3B600%3B700&#038;display=swap&#038;ver=all"
+            type="text/css"
+            media="all"
+          />
+          <link
+            rel="stylesheet"
+            id="ionicons-css"
+            href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?ver=all"
+            type="text/css"
+            media="all"
           />
           <link rel="stylesheet" href="/css/index.css" />
         </Head>
@@ -161,7 +189,7 @@ export default class Home extends Component {
                   </a>
                   .
                 </p>
-                <button onClick={() => this.getQRCode()}>Submit</button>
+                <button onClick={() => this.generateQRFile()}>Submit</button>
               </div>
 
               <hr />
