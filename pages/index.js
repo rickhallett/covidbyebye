@@ -53,7 +53,7 @@ export default class Home extends Component {
     setTimeout(() => {
       downloadLink.click();
       document.body.removeChild(downloadLink);
-    }, 100);
+    }, 500);
   }
 
   handleInput(evt) {

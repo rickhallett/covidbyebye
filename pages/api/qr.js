@@ -2,7 +2,7 @@ import QRcode from "qrcode";
 import fs from "fs";
 import { s3 } from "../../aws.config";
 
-const uploadToAWS = (fileName) => {
+const uploadToAWS = async (fileName) => {
   fs.readFile(fileName, (err, data) => {
     if (err) throw err;
 
@@ -18,6 +18,7 @@ const uploadToAWS = (fileName) => {
     s3.upload(params, function (s3Err, data) {
       if (s3Err) throw s3Err;
       console.log(`File uploaded successfully at ${data.Location}`);
+      return true;
     });
   });
 };
@@ -37,12 +38,11 @@ const generateQRFile = async (data) => {
 
 export default async function handler(req, res) {
   const fileCreated = await generateQRFile(req.body);
-
   if (fileCreated.error) return res.status(500).json({ msg: fileCreated.msg });
 
-  const filename = fileCreated.substring(7);
+  const uploaded = await uploadToAWS(fileCreated);
 
-  uploadToAWS(fileCreated);
+  console.log("uploaded", uploaded);
 
   return res.status(200).json({
     msg: `${fileCreated} created!`,
