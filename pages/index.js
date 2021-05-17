@@ -5,6 +5,11 @@ import axios from "axios";
 
 import Footer from "../components/Footer";
 
+const backendURL =
+  process.env.NODE_ENV == "production"
+    ? "https://evening-bastion-69590.herokuapp.com"
+    : "http://localhost:3123";
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +19,7 @@ export default class Home extends Component {
         firstname: "",
         lastname: "",
         email: "",
-        phonenumber: "",
+        phone: "",
         dob: "",
         timestamp: null,
       },
@@ -22,14 +27,16 @@ export default class Home extends Component {
   }
 
   getQRCode() {
-    const timestamp = Date.now().toString();
-    this.state.apiData.timestamp = timestamp;
+    this.state.apiData.timestamp = Date.now().toString();
     axios
-      .post("/api/qr", this.state.apiData)
+      .post(backendURL, this.state.apiData)
       .then((res) => {
         const newState = { ...this.state };
         this.setState({ ...newState });
-        this.downloadLastQR(res.data.filename);
+        this.downloadImage(
+          `${backendURL}/${res.data.filepath}`,
+          res.data.filepath
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -40,30 +47,23 @@ export default class Home extends Component {
     return JSON.stringify(this.state.apiData);
   }
 
-  downloadLastQR(filename) {
-    const downloadLink = document.createElement("a");
-    downloadLink.href = `https://testingforall.s3.eu-west-2.amazonaws.com/public/${filename}`;
-    downloadLink.style.display = "none";
-    downloadLink.download = `${filename}`;
+  async downloadImage(imageSrc, filepath) {
+    const image = await fetch(imageSrc);
+    const imageBlog = await image.blob();
+    const imageURL = URL.createObjectURL(imageBlog);
 
-    document.body.appendChild(downloadLink);
-
-    // hack: without this timeout, chrome attempts to open the resource in a new tab
-    // causing an XML style error
-    setTimeout(() => {
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    }, 500);
+    const link = document.createElement("a");
+    link.href = imageURL;
+    link.download = filepath.split("/")[1];
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   handleInput(evt) {
     const newState = { ...this.state };
     newState.apiData[evt.target.id] = evt.target.value;
     this.setState({ ...newState });
-  }
-
-  printState() {
-    console.log(this.state);
   }
 
   render() {
@@ -119,7 +119,7 @@ export default class Home extends Component {
               <input
                 type="text"
                 name="email"
-                id="name"
+                id="email"
                 placeholder="Email"
                 onChange={(e) => this.handleInput(e)}
                 // required
@@ -160,7 +160,6 @@ export default class Home extends Component {
                   .
                 </p>
                 <button onClick={() => this.getQRCode()}>Submit</button>
-                {/* <button onClick={() => this.printState()}>State</button> */}
               </div>
 
               <hr />
