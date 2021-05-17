@@ -395,13 +395,13 @@ export default class BS extends Component {
                 <div className="w-100 d-flex flex-column flex-wrap flex-md-row align-items-center mt-2">
                   <a
                     href="https://www.testingforall.org/product/covid-19-immunity-tracker/"
-                    className="button white mt-2 mr-5"
+                    className="button white mt-2  ml-md-4"
                   >
                     Get your Immunity Tracker
                   </a>
                   <a
                     href="#"
-                    className="button white mt-2 mr-5 ml-1"
+                    className="button white mt-2 ml-md-4"
                     onClick={() => this.toggleQRForm()}
                   >
                     {!this.state.showQRForm && "Get Immunity QR Code"}
