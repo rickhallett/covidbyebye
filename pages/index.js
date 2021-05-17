@@ -2,17 +2,8 @@ import Head from "next/head";
 import { Component } from "react";
 import QRcode from "qrcode.react";
 import axios from "axios";
-import AWS from "aws-sdk";
-import Cors from "cors";
 
 import Footer from "../components/Footer";
-
-const s3 = new AWS.S3({
-  // accessKeyId: process.env.AWS_ACCESS_KEY,
-  accessKeyId: "AKIARMKNMLCZSE252ZXR",
-  // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  secretAccessKey: "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",
-});
 
 export default class Home extends Component {
   constructor(props) {
@@ -50,70 +41,19 @@ export default class Home extends Component {
   }
 
   downloadLastQR(filename) {
-    console.log("downloading...", filename);
     const downloadLink = document.createElement("a");
-    // downloadLink.href = `/${filename}`;
+    downloadLink.href = `https://testingforall.s3.eu-west-2.amazonaws.com/public/${filename}`;
+    downloadLink.style.display = "none";
+    downloadLink.download = `${filename}`;
 
-    // call S3 to retrieve CORS configuration for selected bucket
-    s3.getBucketCors(
-      {
-        Bucket: "testingforall",
-      },
-      function (err, data) {
-        if (err) {
-          alert(err);
-          console.log("Error", err);
-        } else if (data) {
-          console.log("Success", JSON.stringify(data.CORSRules));
-        }
-      }
-    );
+    document.body.appendChild(downloadLink);
 
-    return;
-
-    s3.listObjects(
-      {
-        Bucket: "testingforall",
-      },
-      function (err, data) {
-        if (err) {
-          console.log("Error", err);
-        } else {
-          console.log("Success", data);
-        }
-      }
-    );
-
-    return;
-
-    s3.getObject(
-      {
-        Bucket: "testingforall",
-        Key: "public/" + filename,
-      },
-      function (error, data) {
-        if (error != null) {
-          alert("Failed to retrieve an object: " + error);
-        } else {
-          console.log("Loaded " + data.ContentLength + " bytes");
-          // do something with data.Body
-
-          console.log(data);
-
-          // downloadLink.href = `/${filename}`;
-
-          // downloadLink.download = filename;
-          // document.body.appendChild(downloadLink);
-          // downloadLink.click();
-          // document.body.removeChild(downloadLink);
-        }
-      }
-    );
-
-    // downloadLink.download = filename;
-    // document.body.appendChild(downloadLink);
-    // downloadLink.click();
-    // document.body.removeChild(downloadLink);
+    // hack: without this timeout, chrome attempts to open the resource in a new tab
+    // causing an XML style error
+    setTimeout(() => {
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }, 100);
   }
 
   handleInput(evt) {

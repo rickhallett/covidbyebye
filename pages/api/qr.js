@@ -1,24 +1,20 @@
 import QRcode from "qrcode";
 import fs from "fs";
-import AWS from "aws-sdk";
-
-const s3 = new AWS.S3({
-  // accessKeyId: process.env.AWS_ACCESS_KEY,
-  accessKeyId: "AKIARMKNMLCZSE252ZXR",
-  // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  secretAccessKey: "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",
-});
+import { s3 } from "../../aws.config";
 
 const uploadToAWS = (fileName) => {
   fs.readFile(fileName, (err, data) => {
     if (err) throw err;
+
     const params = {
-      Bucket: "testingforall", // pass your bucket name
+      Bucket: "testingforall",
       Key: fileName,
       Body: data,
       ACL: "public-read",
       ContentType: "image/png",
+      ContentDisposition: `attachment; filename=${fileName}`,
     };
+
     s3.upload(params, function (s3Err, data) {
       if (s3Err) throw s3Err;
       console.log(`File uploaded successfully at ${data.Location}`);
@@ -26,8 +22,9 @@ const uploadToAWS = (fileName) => {
   });
 };
 
-const generateQRToFile = async (data) => {
+const generateQRFile = async (data) => {
   const filename = `public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
+
   try {
     await QRcode.toFile(filename, JSON.stringify(data));
   } catch (error) {
@@ -39,8 +36,7 @@ const generateQRToFile = async (data) => {
 };
 
 export default async function handler(req, res) {
-  console.log("req", req.body);
-  const fileCreated = await generateQRToFile(req.body);
+  const fileCreated = await generateQRFile(req.body);
 
   if (fileCreated.error) return res.status(500).json({ msg: fileCreated.msg });
 
@@ -50,6 +46,6 @@ export default async function handler(req, res) {
 
   return res.status(200).json({
     msg: `${fileCreated} created!`,
-    filename: filename,
+    filename: fileCreated.substring(7),
   });
 }
