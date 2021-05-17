@@ -24,7 +24,10 @@ const uploadToAWS = async (fileName) => {
 };
 
 const generateQRFile = async (data) => {
-  const filename = `public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
+  const filename =
+    process.env.NODE_ENV == "production"
+      ? `${data.lastname}-${data.dob}-${data.timestamp}.png`
+      : `public/${data.lastname}-${data.dob}-${data.timestamp}.png`;
 
   try {
     await QRcode.toFile(filename, JSON.stringify(data));
