@@ -5,10 +5,12 @@ import axios from "axios";
 
 import Footer from "../components/Footer";
 
-const backendURL =
+let backendURL =
   process.env.NODE_ENV == "production"
     ? "https://evening-bastion-69590.herokuapp.com"
     : "http://localhost:3123";
+
+// backendURL = "https://evening-bastion-69590.herokuapp.com"; // dev override
 
 export default class Home extends Component {
   constructor(props) {
